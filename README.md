@@ -1,5 +1,5 @@
 ##Silver-waffle
-#####App for finding shortest way
+App for finding shortest way
 
 ###Dependecies
   * ruby 2.3
