@@ -1,6 +1,7 @@
 require 'area'
 
 RSpec.describe Area do
+
   describe 'borders' do
     it 'has defined MAX_X border' do
       expect(Area::MAX_X).to be_an Integer
@@ -30,5 +31,4 @@ RSpec.describe Area do
       expect(area.cells.last.y).to eq (Area::MAX_Y - 1)
     end
   end
-
 end

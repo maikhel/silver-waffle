@@ -14,7 +14,7 @@ class Area
   end
 
   def cells_num
-    MAX_Y * MAX_X
+    @cells.size
   end
 
 end

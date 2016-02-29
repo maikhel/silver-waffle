@@ -17,4 +17,9 @@ class Car
   def move_y(where)
     @y = where if where >= 0 && where < Area::MAX_Y
   end
+
+  def end?
+    @x == 0 && @y == 0
+  end
+
 end

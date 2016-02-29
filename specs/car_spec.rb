@@ -1,6 +1,7 @@
 require 'car'
 
 RSpec.describe Car do
+
   describe '#initialize' do
     it 'initializes new object' do
       car = Car.new
@@ -66,9 +67,24 @@ RSpec.describe Car do
     end
   end
 
-
   describe 'end?' do
-    it 'checks if car comes to end - point[0,0]' do
+    it 'doesnt finishes if x is not 0' do
+      car = Car.new
+      car.move_x(4)
+      car.move_y(0)
+      expect(car.end?).to be false
+    end
+    it 'doesnt finishes if y is not 0' do
+      car = Car.new
+      car.move_y(3)
+      car.move_x(0)
+      expect(car.end?).to be false
+    end
+    it 'ends when both x and y are equal to 0' do
+      car = Car.new
+      car.move_x(0)
+      car.move_y(0)
+      expect(car.end?).to be true
 
     end
   end
