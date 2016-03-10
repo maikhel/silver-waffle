@@ -2,31 +2,59 @@ require 'car'
 
 RSpec.describe Car do
 
-  describe '#initialize' do
+  describe '.initialize' do
     it 'initializes new object' do
       car = Car.new
       expect(car).to be_an_instance_of(Car)
     end
+    it 'initilizes x and y if arguments given' do
+      car = Car.new(3,4)
+      expect(car.x).to eq 3
+      expect(car.y).to eq 4
+    end
+    it 'initializes missing parameter' do
+      car = Car.new(1)
+      expect(car.x).to eq 1
+      expect(car.y).to be_an Integer
+    end
   end
 
-  describe '#randomPosition' do
+  describe '.randomX' do
     before :each do
-      car = Car.new
-      @pos = car.generatePosition
+      @car = Car.new
+      @pos = @car.randomX
     end
-    it 'generates array' do
-      expect(@pos).to be_an(Array)
-      expect(@pos.size).to eq 2
-      expect(@pos[0]).to be_an Integer
-      expect(@pos[1]).to be_an Integer
+    it 'returns Integer' do
+      expect(@pos).to be_an Integer
     end
-    it 'generates random x and y' do
-      expect(@pos[0]).to be < Area::MAX_X
-      expect(@pos[0]).to be >= 0
-      expect(@pos[1]).to be < Area::MAX_Y
-      expect(@pos[1]).to be >= 0
+    it 'returns number smaller than MAX_X' do
+      expect(@pos).to be < Area::MAX_X
+    end
+    it 'returns random number' do
+      nums = []
+      10.times { nums << @car.randomX }
+      expect(nums.uniq).not_to eq []
     end
   end
+
+  describe '.randomY' do
+    before :each do
+      @car = Car.new
+      @pos = @car.randomY
+    end
+    it 'returns Integer' do
+      expect(@pos).to be_an Integer
+    end
+    it 'returns number smaller than MAX_Y' do
+      expect(@pos).to be < Area::MAX_Y
+    end
+    it 'returns random number' do
+      nums = []
+      10.times { nums << @car.randomY }
+      expect(nums.uniq).not_to eq []
+    end
+  end
+
 
   describe '@x, @y' do
     it 'has attributes x and y' do
@@ -36,7 +64,7 @@ RSpec.describe Car do
     end
   end
 
-  describe 'move_x' do
+  describe '.move_x' do
     before :each do
       @car = Car.new
       @car.move_x(5)
@@ -50,8 +78,11 @@ RSpec.describe Car do
     it 'doesnt move car if given position is greater or equal MAX_X' do
       expect { @car.move_x(Area::MAX_X) }.not_to change { @car.x }
     end
+    it 'moves car horizontally to next cell' do
+      
+    end
   end
-  describe 'move_y' do
+  describe '.move_y' do
     before :each do
       @car = Car.new
       @car.move_y(4)
@@ -67,7 +98,7 @@ RSpec.describe Car do
     end
   end
 
-  describe 'end?' do
+  describe '.end?' do
     it 'doesnt finishes if x is not 0' do
       car = Car.new
       car.move_x(4)

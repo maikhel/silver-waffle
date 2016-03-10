@@ -13,7 +13,7 @@ RSpec.describe Cell do
       expect(cell.x).to be nil
       expect(cell.y).to be nil
     end
-    it 'set probability of bad traffic' do
+    it 'sets probability of bad traffic' do
       cell = Cell.new(4,4)
       expect(cell.stoppage).to be_a Float
       expect(cell.stoppage).to be < 1

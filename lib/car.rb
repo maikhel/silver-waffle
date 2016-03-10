@@ -2,12 +2,16 @@ class Car
 
   attr_reader :x, :y
 
-  def initialize
-    @x, @y = generatePosition
+  def initialize(x=nil,y=nil)
+    @x, @y = x || randomX, y || randomY
   end
 
-  def generatePosition
-    [Random.rand(Area::MAX_X),Random.rand(Area::MAX_Y)]
+  def randomX
+    Random.rand(Area::MAX_X)
+  end
+
+  def randomY
+    Random.rand(Area::MAX_Y)
   end
 
   def move_x(where)
